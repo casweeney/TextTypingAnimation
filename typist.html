@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Typing Test</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<style type="text/css">
+		#bg {
+			background: linear-gradient(#022857 20%, #000d1c 70%);
+			/*background-image: url(./img/bg2.png);*/
+			background-blend-mode: multiply;
+			background-size: stretch;
+			/*mix-blend-mode: exclusion;*/
+			height: 300px;
+			padding: 1%;
+			color: #fff;
+			margin-left: -1.1%;
+			margin-right: -1.1%;
+		}
+
+		#programs {
+			font-weight: bold;
+			font-size: 30px;
+			color: #cfdef1;
+		}
+
+		#blink {
+			font-weight: bold;
+			font-size: 30px;
+		}
+
+		#btn_color {
+			background: radial-gradient(#022857 10%, #000d1c 70%);
+			color: #fff;
+		}
+
+		#btn_color:hover {
+			background: #444;
+		}
+	</style>
+</head>
+<body onload="">
+	<div class="container-fluid">
+		<div id="bg">
+			<h1 class="text-center" id="welcome">WELCOME TO IHIFIX TRAINING CLASS</h1>
+			<h3 class="text-center">We are Teaching <span id="programs"></span><b id="blink">|</b></h3>
+			<br />
+			<center><button class="btn btn-default" id="btn_color">EXPLORE MORE ...</button></center>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	var colors = ["#07a4c3", "aliceblue", "#c90", "#54dee0", "red"];
+	var courses = ["Javascript  ", "PHP  ", "MYSQL  ", "Angular JS  ", "Node JS  ", " WordPress  ", "Python  ", "Progressive Web App  "];
+	var outp = document.getElementById('programs');
+	var index = 0;
+	var i = 0;
+	var x = 0;
+	var txt;
+	var speed = 200;
+	var flag = false;
+
+	function colorize(){
+		document.getElementById("welcome").style.color = colors[x];
+		document.getElementById("btn_color").style.borderColor = colors[x];
+		x = x+1;
+		if(x == colors.length+1){
+			x = 0;
+			colors = ["#07a4c3", "aliceblue", "#c90", "#54dee0", "red"];
+			document.getElementById("welcome").style.color = colors[x];
+			document.getElementById("btn_color").style.borderColor = colors[x];
+		}
+
+		setTimeout('colorize()', 1000);
+	}
+	colorize();
+
+	
+
+	function typing() {
+		if(flag == true){
+			document.getElementById("programs").innerHTML = courses[index];
+			var reduction = courses[index].slice(0, courses[index].length-1);
+			document.getElementById("programs").innerHTML = reduction;
+			courses[index] = reduction;
+			if(reduction == ""){
+				courses = ["Javascript  ", "PHP  ", "MYSQL  ", "Angular JS  ", "Node JS  ", "WordPress  ", "Python  ", "Progressive Web App  "];
+	        	index++;
+	        	flag = false;
+	        	if(flag == false){
+	        		i = 0;
+	        		txt = courses[index];
+	        	}
+	        }	
+		}else if(flag == false){
+			txt = courses[index];
+			if (i < txt.length) {
+		    	document.getElementById("programs").innerHTML += txt.charAt(i);
+		    	i++;
+		  	}
+	  	 	if(i == txt.length){
+	  	 		if(index == courses.length-1){
+	  	 			courses = ["Javascript  ", "PHP  ", "MYSQL  ", "Angular JS  ", "Node JS  ", "WordPress  ", "Python  ", "Progressive Web App  "];
+	  	 			index = 0;
+	  	 			txt = courses[index];
+	  	 			flag = false;
+	  	 		}
+
+	  	 		flag = true;
+	    	}
+		}
+	  	setTimeout(typing, speed);
+	}
+	typing();
+
+    function deleting(){
+    	if(index != courses.length){
+    		outp.innerHTML = courses[index];
+			var reduce_str = courses[index].slice(0, courses[index].length-1);
+			outp.innerHTML = reduce_str;
+			courses[index] = reduce_str;
+			if(reduce_str == ""){
+	        	index = index + 1;
+	        }
+    	}else{
+    		index = 0;
+    		courses = ["Javascript    ", "PHP    ", "MYSQL    ", "Angular JS    ", "Node JS    ", " WordPress    ", "Python    "];
+    		outp.innerHTML = courses[index];
+    	}
+
+	    /*outp.innerHTML = courses[index];
+		var reduce_str = courses[index].slice(0, courses[index].length-1);
+		outp.innerHTML = reduce_str;
+		courses[index] = reduce_str;
+		if(reduce_str == ""){
+        	index = index + 1;
+        }
+
+        if(index == courses.length){
+    		index = 0;
+    		courses = ["Javascript    ", "PHP    ", "MYSQL    ", "Angular JS    ", "Node JS    ", " WordPress    ", "Python    "];
+    		outp.innerHTML = courses[index];
+    	}*/
+        var repeat = setTimeout('deleting()', speed);
+    }
+
+  //   function blinking(){
+		// document.getElementById("blink").style.display = "none";
+
+  //   	if(flag == true){
+  //   		document.getElementById("blink").style.display = "";
+  //   		flag = false;
+  //   	}else if(flag == false){
+  //   		document.getElementById("blink").style.display = "none";
+  //   		flag = true;
+  //   	}
+
+  //   	//setInterval('blinking()', 500);
+  //   }
+  //   blinking();
+
+</script>
