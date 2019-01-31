@@ -2,7 +2,7 @@
 
 TECHNOLOGIES: HTML5, CSS3, Twitter Bootstrap3, JavaScript
 
-DESCRIPTION: A JavaScript text typing animation with color changing effects
+DESCRIPTION: A JavaScript text typing animation with color changing effects.
 
 Contributed by: Casweeney on github
 
